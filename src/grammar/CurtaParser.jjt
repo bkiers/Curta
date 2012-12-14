@@ -5,52 +5,14 @@ options {
   NODE_CLASS="CurtaNode";
 }
 
-PARSER_BEGIN(Curta)
+PARSER_BEGIN(CurtaParser)
 
 package curta;
 
-import java.util.*;
-import curta.function.*;
-
-public class Curta {
-
-  private Map<String, Object> vars;
-  private Map<String, curta.function.Function> functions;
-
-  public Curta() {
-    clear();
-  }
-
-  public void addFunction(Function function) {
-    functions.put(function.id, function);
-  }
-
-  public void addVar(String id, Object value) {
-    vars.put(id, value);
-  }
-
-  public void clear() {
-    vars = new LinkedHashMap<String, Object>();
-    functions = new LinkedHashMap<String, Function>();
-
-    addFunction(new Min());
-    addFunction(new Max());
-  }
-
-  public Object eval(String source) throws Exception {
-    Curta parser = new Curta(new java.io.StringReader(source));
-    CurtaNode root = parser.ast();
-    return root.eval(vars, functions);
-  }
-
-  public static void main(String[] args) throws Exception {
-    Curta curta = new Curta();
-    Object value = curta.eval("return min(4,2,3,1,5);");
-    System.out.println("value = " + value + " (" + value.getClass().getName() + ")");
-  }
+public class CurtaParser {
 }
 
-PARSER_END(Curta)
+PARSER_END(CurtaParser)
 
 /**
  * Lexer rules
@@ -99,7 +61,7 @@ SKIP :
 /**
  * Parser rules javacc options
  */
-private CurtaNode ast() #Root :
+protected CurtaNode ast() #Root :
 {}
 {
   (<EOS>)* statements() <EOF> {return jjtThis;}
@@ -108,13 +70,13 @@ private CurtaNode ast() #Root :
 private void statements() :
 {}
 {
-  (assignment() (<EOS>)+)* ret()
+  (LOOKAHEAD(2) assignment() (<EOS>)+)* ret()
 }
 
 private void ret() #Return :
 {}
 {
-  <Return> expr() (<EOS>)*
+  (<Return>)? expr() (<EOS>)*
 }
 
 private void assignment() #Assign :
@@ -132,15 +94,13 @@ private void expr() :
 private void or() :
 {}
 {
-  and() ( <Or> and() #Or(2)
-        )*
+  and() ( <Or> and() #Or(2) )*
 }
 
 private void and() :
 {}
 {
-  equality() ( <And> equality() #And(2)
-             )*
+  equality() ( <And> equality() #And(2) )*
 }
 
 private void equality() :

@@ -8,6 +8,11 @@ public abstract class Function {
     public final String id;
 
     public Function(String id) {
+
+        if(id == null) {
+            throw new RuntimeException("Function id cannot be null");
+        }
+
         this.id = id;
     }
 

@@ -5,7 +5,7 @@ import curta.function.Function;
 import java.io.File;
 import java.util.Map;
 
-public class CurtaNode extends SimpleNode implements CurtaTreeConstants {
+public class CurtaNode extends SimpleNode implements CurtaParserTreeConstants {
 
     public static final double EPSILON = 0.00000000001;
     public static final Object VOID = new Object();
