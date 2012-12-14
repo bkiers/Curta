@@ -1,5 +1,6 @@
-package curta.function;
+package curta;
 
+import curta.Function;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

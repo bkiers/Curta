@@ -1,0 +1,3 @@
+magic_number = 42
+x = 2 * magic_number
+x

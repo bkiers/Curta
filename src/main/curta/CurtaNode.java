@@ -1,7 +1,5 @@
 package curta;
 
-import curta.function.Function;
-
 import java.io.File;
 import java.util.Map;
 

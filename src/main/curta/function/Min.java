@@ -1,6 +1,7 @@
 package curta.function;
 
-import java.util.ArrayList;
+import curta.Function;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -13,10 +14,8 @@ public class Min extends Function {
     @Override
     public Object eval(Object... params) {
 
-        super.checkNumberOfParams(1, Integer.MAX_VALUE, params);
+        super.checkNumberOfParams(2, 2, params);
 
-        List<Double> numbers = super.getNumbers(params);
-
-        return Collections.min(numbers);
+        return Math.min(super.getNumber(0, params), super.getNumber(1, params));
     }
 }

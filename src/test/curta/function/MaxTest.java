@@ -10,8 +10,8 @@ public class MaxTest {
     @Test
     public void evalTest() {
 
-        assertThat((Double)(new Max().eval(new Double[]{1.0, 2.0, 5.0, 4.0, 3.0})), is(5.0));
-        assertThat((Double)(new Max().eval(new Double[]{-500.0})), is(-500.0));
+        assertThat((Double)(new Max().eval(new Double[]{-500.0, -500.0001})), is(-500.0));
+        assertThat((Double)(new Max().eval(new Double[]{-500.0, 500.0001})), is(500.0001));
     }
 
     @Test(expected = RuntimeException.class)

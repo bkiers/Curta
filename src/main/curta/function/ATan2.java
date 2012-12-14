@@ -2,13 +2,12 @@ package curta.function;
 
 import curta.Function;
 
-import java.util.Collections;
 import java.util.List;
 
-public class Max extends Function {
+public class ATan2 extends Function {
 
-    public Max() {
-        super("max");
+    public ATan2() {
+        super("atan2");
     }
 
     @Override
@@ -16,6 +15,6 @@ public class Max extends Function {
 
         super.checkNumberOfParams(2, 2, params);
 
-        return Math.max(super.getNumber(0, params), super.getNumber(1, params));
+        return Math.atan2(super.getNumber(0, params), super.getNumber(1, params));
     }
 }

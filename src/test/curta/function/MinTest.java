@@ -10,8 +10,8 @@ public class MinTest {
     @Test
     public void evalTest() {
 
-        assertThat((Double)(new Min().eval(new Double[]{1.0, 2.0, 5.0, 4.0, 3.0})), is(1.0));
-        assertThat((Double)(new Min().eval(new Double[]{-500.0})), is(-500.0));
+        assertThat((Double)(new Min().eval(new Double[]{1.0, 2.0})), is(1.0));
+        assertThat((Double)(new Min().eval(new Double[]{-500.0,-501.0})), is(-501.0));
     }
 
     @Test(expected = RuntimeException.class)

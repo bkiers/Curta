@@ -94,13 +94,15 @@ private void expr() :
 private void or() :
 {}
 {
-  and() ( <Or> and() #Or(2) )*
+  and() ( <Or> and() #Or(2)
+        )*
 }
 
 private void and() :
 {}
 {
-  equality() ( <And> equality() #And(2) )*
+  equality() ( <And> equality() #And(2)
+             )*
 }
 
 private void equality() :
