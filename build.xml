@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Curta" default="run">
+
+    <property name="main.class"        value="curta.Curta"/>
+    <property name="tree.grammar.file" value="src/grammar/Curta.jjt"/>
+    <property name="grammar.file"      value="src/main/curta/Curta.jj"/>
+    <property name="src.dir"           value="src/main/curta"/>
+    <property name="build.dir"         value="build/main"/>
+
+    <path id="classpath">
+        <pathelement location="${build.dir}"/>
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean" description="Removes all binaries.">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="init" depends="clean" description="Creates a build directory structure.">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="init" description="Compiles all source files.">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="generate" depends="init" description="Generates the parser files.">
+        <java classname="jjtree" fork="true" failonerror="true">
+            <arg value="${tree.grammar.file}"/>
+            <classpath refid="classpath"/>
+        </java>
+        <java classname="javacc" fork="true" failonerror="true">
+            <arg value="${grammar.file}"/>
+            <classpath refid="classpath"/>
+        </java>
+        <antcall target="compile"/>
+    </target>
+
+    <target name="run" depends="generate" description="Executes the main class.">
+        <java classname="${main.class}" fork="true" failonerror="true">
+            <classpath refid="classpath"/>
+        </java>
+    </target>
+
+</project>
