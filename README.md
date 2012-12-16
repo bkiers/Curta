@@ -7,7 +7,8 @@ It supports all static methods, and variables, from
 [Java 7's Math class](http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html) 
 and can be easily extended with extra functions. Even certain expressions can be 
 programatically changed. For example, changing the meaning of the `^` as a binary 
-XOR operator to act as a power operator.
+XOR operator to act as a power operator (see [Changing expressions](#changing-expressions)
+below).
 
 ## Data types
 
