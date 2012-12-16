@@ -22,7 +22,7 @@ and add it to your project's classpath.
 
 ## Quick demo
 
-For a more thorough explanation of this library, scroll passed [the next paragraph](#data-type), 
+For a more thorough explanation of this library, scroll passed [the next paragraph](#data-types), 
 but for the impatient, here's a quick demo of how to use *Curta*:
 
 ```java
