@@ -144,7 +144,7 @@ curta.addFunction(new Function("isPrime") {
     }
 });
 
-String expression = "isPrime(11)";
+String expression = "isPrime(2147483647)";
 
 System.out.printf("%s = %s\n", expression, curta.eval(expression)); 
 ```
