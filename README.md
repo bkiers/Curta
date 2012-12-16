@@ -160,4 +160,24 @@ or `"isPrime(11, 17)"` would result in an exception to be thrown.
 
 ## Changing expressions
 
-...
+Some expressions can be changed (or removed) from the parser programatically. Lets's say
+you don't want to have support for the bitwise not operator. You can then simply set the 
+operator of an expression to `null`.
+
+For example, the following code:
+
+```java
+Curta curta = new Curta();
+System.out.println(curta.eval("~42"));
+```
+
+would print `-43`, but:
+
+```java
+Curta curta = new Curta();
+curta.setExpression(Operator.BitNot, null);
+System.out.println(curta.eval("~42"));
+```
+would throw the following exception: 
+
+`Exception in thread "main" java.lang.RuntimeException: not implemented: ~ (BitNot)`
