@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Floor extends Function {
 
     public Floor() {
@@ -15,6 +11,6 @@ public class Floor extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.floor(super.getNumber(0, params));
+        return Math.floor(super.getDouble(0, params));
     }
 }

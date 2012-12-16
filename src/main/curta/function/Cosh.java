@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Cosh extends Function {
 
     public Cosh() {
@@ -15,6 +11,6 @@ public class Cosh extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.cosh(super.getNumber(0, params));
+        return Math.cosh(super.getDouble(0, params));
     }
 }

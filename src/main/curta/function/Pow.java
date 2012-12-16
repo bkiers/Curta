@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Pow extends Function {
 
     public Pow() {
@@ -15,6 +11,6 @@ public class Pow extends Function {
 
         super.checkNumberOfParams(2, 2, params);
 
-        return Math.pow(super.getNumber(0, params), super.getNumber(1, params));
+        return Math.pow(super.getDouble(0, params), super.getDouble(1, params));
     }
 }

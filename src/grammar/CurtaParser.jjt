@@ -25,8 +25,12 @@ TOKEN :
   |  < Assign     : "=" >
   |  < Or         : "||" >
   |  < And        : "&&" >
+  |  < BOr        : "|" >
+  |  < BXOr       : "^" >
+  |  < BAnd       : "&" >
   |  < Add        : "+" >
   |  < Sub        : "-" >
+  |  < Pow        : "**" >
   |  < Mul        : "*" >
   |  < Div        : "/" >
   |  < Mod        : "%" >
@@ -34,12 +38,17 @@ TOKEN :
   |  < GT         : ">" >
   |  < LTE        : "<=" >
   |  < LT         : "<" >
+  |  < SLShift    : "<<" >
+  |  < URShift    : ">>>" >
+  |  < SRShift    : ">>" >
   |  < Eq         : "==" >
   |  < NEq        : "!=" >
   |  < Not        : "!" >
+  |  < BNot       : "~" >
   |  < Comma      : "," >
   |  < True       : "true" >
   |  < False      : "false" >
+  |  < Null       : "null" >
   |  < Return     : "return" >
   |  < Number     : (<Digit>)+ ("." (<Digit>)+)? | "." (<Digit>)+ >
   |  < Identifier : ("_" | <Letter>) ("_" | <AlphaNum>)* >
@@ -101,7 +110,28 @@ private void or() :
 private void and() :
 {}
 {
-  equality() ( <And> equality() #And(2)
+  bor() ( <And> bor() #And(2)
+        )*
+}
+
+private void bor() :
+{}
+{
+  bxor() ( <BOr> bxor() #BOr(2)
+         )*
+}
+
+private void bxor() :
+{}
+{
+  band() ( <BXOr> band() #BXOr(2)
+         )*
+}
+
+private void band() :
+{}
+{
+  equality() ( <BAnd> equality() #BAnd(2)
              )*
 }
 
@@ -116,10 +146,22 @@ private void equality() :
 private void relational() :
 {}
 {
-  add() ( <GTE> add() #GTE(2)
-        | <LTE> add() #LTE(2)
-        | <GT>  add() #GT(2)
-        | <LT>  add() #LT(2)
+  shift() ( <GTE> shift() #GTE(2)
+          | <LTE> shift() #LTE(2)
+          | <GT>  shift() #GT(2)
+          | <LT>  shift() #LT(2)
+          )*
+}
+
+
+
+
+private void shift() :
+{}
+{
+  add() ( <SLShift> add() #SLShift(2)
+        | <URShift> add() #URShift(2)
+        | <SRShift> add() #SRShift(2)
         )*
 }
 
@@ -143,9 +185,24 @@ private void mul() :
 private void unary() :
 {}
 {
-     <Sub> atom() #UnarySub
-  |  <Not> atom() #Not
-  |  atom()
+     <Sub> bitwiseUnary() #UnarySub
+  |  <Add> bitwiseUnary() #UnaryAdd
+  |  <Not> bitwiseUnary() #Not
+  |  bitwiseUnary()
+}
+
+private void bitwiseUnary() :
+{}
+{
+     <BNot> pow()       #BNot
+  |  pow()
+}
+
+private void pow() :
+{}
+{
+  atom() ( <Pow> atom() #Pow(2)
+         )*
 }
 
 private void atom() :
@@ -155,6 +212,7 @@ private void atom() :
      function()
   |  id()
   |  num()
+  |  _null()
   |  bool()
   |  <OParen> expr() <CParen>
 }
@@ -171,6 +229,12 @@ private void num() #Num :
 }
 {
   t=<Number> {jjtThis.value = Double.valueOf(t.image);}
+}
+
+private void _null() #Null :
+{}
+{
+  <Null> {jjtThis.value = null;}
 }
 
 private void id() #Id :

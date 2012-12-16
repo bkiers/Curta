@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Expm1 extends Function {
 
     public Expm1() {
@@ -15,6 +11,6 @@ public class Expm1 extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.expm1(super.getNumber(0, params));
+        return Math.expm1(super.getDouble(0, params));
     }
 }

@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Abs extends Function {
 
     public Abs() {
@@ -15,6 +11,6 @@ public class Abs extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.abs(super.getNumber(0, params));
+        return Math.abs(super.getDouble(0, params));
     }
 }

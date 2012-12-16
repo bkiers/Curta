@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Round extends Function {
 
     public Round() {
@@ -15,6 +11,6 @@ public class Round extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.round(super.getNumber(0, params));
+        return Math.round(super.getDouble(0, params));
     }
 }

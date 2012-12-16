@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Ulp extends Function {
 
     public Ulp() {
@@ -15,6 +11,6 @@ public class Ulp extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.ulp(super.getNumber(0, params));
+        return Math.ulp(super.getDouble(0, params));
     }
 }

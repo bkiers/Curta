@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Sinh extends Function {
 
     public Sinh() {
@@ -15,6 +11,6 @@ public class Sinh extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.sinh(super.getNumber(0, params));
+        return Math.sinh(super.getDouble(0, params));
     }
 }

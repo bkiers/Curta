@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Cbrt extends Function {
 
     public Cbrt() {
@@ -15,6 +11,6 @@ public class Cbrt extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.cbrt(super.getNumber(0, params));
+        return Math.cbrt(super.getDouble(0, params));
     }
 }

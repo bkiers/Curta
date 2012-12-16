@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Sqrt extends Function {
 
     public Sqrt() {
@@ -15,6 +11,6 @@ public class Sqrt extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.sqrt(super.getNumber(0, params));
+        return Math.sqrt(super.getDouble(0, params));
     }
 }

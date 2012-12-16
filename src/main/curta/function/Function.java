@@ -1,4 +1,4 @@
-package curta;
+package curta.function;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public abstract class Function {
         }
     }
 
-    protected final Double getNumber(int index, Object... params) {
+    protected final Double getDouble(int index, Object... params) {
 
         Object o = params[index];
 
@@ -41,6 +41,17 @@ public abstract class Function {
         }
 
         return (Double)o;
+    }
+
+    protected final Long getLong(int index, Object... params) {
+
+        Double number = getDouble(index, params);
+
+        if(number % 1 != 0) {
+            throw new RuntimeException("expected an integer value as a parameter to " + id + ", encountered: " + number);
+        }
+
+        return number.longValue();
     }
 
     protected final List<Double> getNumbers(Object... params) {
@@ -65,43 +76,3 @@ public abstract class Function {
 
     public abstract Object eval(Object... params);
 }
-
-/*
-static double abs(double a)
-static double acos(double a)
-static double asin(double a)
-static double atan(double a)
-static double atan2(double y, double x)
-static double cbrt(double a)
-static double ceil(double a)
-static double copySign(double magnitude, double sign)
-static double cos(double a)
-static double cosh(double x)
-static double exp(double a)
-static double expm1(double x)
-static double floor(double a)
-static int getExponent(double d)
-static double hypot(double x, double y)
-static double IEEEremainder(double f1, double f2)
-static double log(double a)
-static double log10(double a)
-static double log1p(double x)
-static double max(double a, double b)
-static double min(double a, double b)
-static double nextAfter(double start, double direction)
-static double nextUp(double d)
-static double pow(double a, double b)
-static double random()
-static double rint(double a)
-static long round(double a)
-static double scalb(double d, int scaleFactor)
-static double signum(double d)
-static double sin(double a)
-static double sinh(double x)
-static double sqrt(double a)
-static double tan(double a)
-static double tanh(double x)
-static double toDegrees(double angrad)
-static double toRadians(double angdeg)
-static double ulp(double d)
-*/

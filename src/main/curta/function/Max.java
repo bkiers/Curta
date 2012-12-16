@@ -1,10 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.Collections;
-import java.util.List;
-
 public class Max extends Function {
 
     public Max() {
@@ -16,6 +11,6 @@ public class Max extends Function {
 
         super.checkNumberOfParams(2, 2, params);
 
-        return Math.max(super.getNumber(0, params), super.getNumber(1, params));
+        return Math.max(super.getDouble(0, params), super.getDouble(1, params));
     }
 }

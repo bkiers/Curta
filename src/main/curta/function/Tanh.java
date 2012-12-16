@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Tanh extends Function {
 
     public Tanh() {
@@ -15,6 +11,6 @@ public class Tanh extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.tanh(super.getNumber(0, params));
+        return Math.tanh(super.getDouble(0, params));
     }
 }

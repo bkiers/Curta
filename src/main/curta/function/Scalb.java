@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Scalb extends Function {
 
     public Scalb() {
@@ -15,6 +11,6 @@ public class Scalb extends Function {
 
         super.checkNumberOfParams(2, 2, params);
 
-        return Math.scalb(super.getNumber(0, params), super.getNumber(1, params).intValue());
+        return Math.scalb(super.getDouble(0, params), super.getDouble(1, params).intValue());
     }
 }

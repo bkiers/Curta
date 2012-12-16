@@ -1,9 +1,5 @@
 package curta.function;
 
-import curta.Function;
-
-import java.util.List;
-
 public class Signum extends Function {
 
     public Signum() {
@@ -15,6 +11,6 @@ public class Signum extends Function {
 
         super.checkNumberOfParams(1, 1, params);
 
-        return Math.signum(super.getNumber(0, params));
+        return Math.signum(super.getDouble(0, params));
     }
 }
