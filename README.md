@@ -22,8 +22,8 @@ and add it to your project's classpath.
 
 ## Quick demo
 
-For a more thorough explanation of this library, scroll below, and for the 
-impatient, here's a quick demo of how to use *Curta*:
+For a more thorough explanation of this library, scroll passed [the next paragraph](#data-type), 
+but for the impatient, here's a quick demo of how to use *Curta*:
 
 ```java
 // soon
