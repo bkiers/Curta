@@ -156,3 +156,7 @@ which your custom function must be extended from, has a couple of utility method
 to check the number of parameters, and convert these parameters to more usable 
 classes (a `long`, in this case). This means that evaluating either `"isPrime(true)"`
 or `"isPrime(11, 17)"` would result in an exception to be thrown.
+
+## Changing expressions
+
+...
