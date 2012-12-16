@@ -161,7 +161,7 @@ or `"isPrime(11, 17)"` would result in an exception to be thrown.
 ## Changing expressions
 
 Some expressions can be changed (or removed) from the parser programatically. Lets's say
-you don't want to have support for the bitwise not operator. You can then simply set the 
+you don't want to have support for the *bitwise-not* operator. You can then simply set the 
 operator of an expression to `null`.
 
 For example, the following code:
@@ -222,3 +222,6 @@ cannot reassign: VAR
 ```
 
 Changing `VAR` to `var` will cause `-1` to be returned.
+
+Calling `clear()` on the `Curta` instance will reset everything: the *bitwise-not* is supported 
+again, and you can reassign capitalized variables.
