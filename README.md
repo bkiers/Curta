@@ -301,5 +301,8 @@ cannot reassign: VAR
 
 Changing `VAR` to `var` will cause `-1` to be returned.
 
+See the [`Operator` enum](https://github.com/bkiers/Curta/blob/master/src/main/curta/Operator.java) 
+to find out which operators can be reassigned.
+
 Calling `clear()` on the `Curta` instance will reset everything: the *bitwise-not* is supported 
 again, and you can reassign capitalized variables.
