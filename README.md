@@ -181,3 +181,44 @@ System.out.println(curta.eval("~42"));
 would throw the following exception: 
 
 `Exception in thread "main" java.lang.RuntimeException: not implemented: ~ (BitNot)`
+
+One more example. Let's say you want to support `final` variables. Whenever a variable 
+consists of only capital letters (or underscores), you don't want that variable to ever 
+change. This is how you could go about doping this:
+
+```java
+Curta curta = new Curta();
+
+curta.setExpression(Operator.Assign, new Expression() {
+    @Override
+    public Object eval(CurtaNode ast, Map<String, Object> vars, Map<String, Function> functions, Map<Integer, Expression> expressions) {
+
+        // get the text of the 1st child
+        String id = super.getTextFromChild(0, ast);
+
+        // evaluate the 2nd child
+        Object value = super.evalChild(1, ast, vars, functions, expressions);
+
+        // check if it's made from caps only, and is already defined
+        if(id.matches("[A-Z_]+") && vars.containsKey(id)) {
+            System.err.println("cannot reassign: " + id);
+        }
+        else {
+            vars.put(id, value);
+        }
+
+        return value;
+    }
+});
+
+System.out.println(curta.eval("PI = 3; VAR = 42; VAR = -1; VAR"));
+```
+
+The code above will return `42` and causes the following to be printed to the `system.err`:
+
+```
+cannot reassign: PI
+cannot reassign: VAR
+```
+
+Changing `VAR` to `var` will cause `-1` to be returned.
