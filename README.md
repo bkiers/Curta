@@ -10,6 +10,21 @@ programatically changed. For example, changing the meaning of the `^` as a binar
 XOR operator to act as a power operator (see [Changing expressions](#changing-expressions)
 below).
 
+## Installation
+
+Either checkout this repository and run: `ant jar`, or download the 
+[JAR file](https://github.com/bkiers/Curta/blob/master/Curta-0.3.jar) directly 
+and add this to your project's classpath.
+
+## Quick demo
+
+For a more thorough explanation of this library, scroll below, and for the 
+impatient, here's a quick demo of how to use *Curta*:
+
+```java
+// soon
+```
+
 ## Data types
 
 The following datatypes are supported:
