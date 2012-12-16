@@ -14,7 +14,7 @@ below).
 
 Either checkout this repository and run: `ant jar`, or download the 
 [JAR file](https://github.com/bkiers/Curta/blob/master/Curta-0.3.jar) directly 
-and add this to your project's classpath.
+and add it to your project's classpath.
 
 ## Quick demo
 
