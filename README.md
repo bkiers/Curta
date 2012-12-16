@@ -150,3 +150,8 @@ System.out.printf("%s = %s\n", expression, curta.eval(expression));
 ```
 
 which will print: `isPrime(2147483647) = true`
+
+As you can see, the abstract class [`Function`](https://github.com/bkiers/Curta/blob/master/src/main/curta/function/Function.java), 
+which your custom function must be extended from, has a couple of utility methods 
+to check the number of parameters, and convert these parameters to more usable 
+classes (a `long`, in this case).
