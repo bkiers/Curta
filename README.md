@@ -3,6 +3,10 @@
 A small, customizable expression evaluator. Named after the [mechanical calculator
 introduced by Curt Herzstark](http://en.wikipedia.org/wiki/Curta) in 1948. 
 
+The parser is generated using [JavaCC](http://javacc.java.net). The generated parser 
+classes are *not* a part of this repository, only [the grammar](https://github.com/bkiers/Curta/blob/master/src/grammar/CurtaParser.jjt)
+is included. You can generate them using `ant generate`.
+
 It supports all static methods, and variables, from 
 [Java 7's Math class](http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html) 
 and can be easily extended with extra functions. Even certain expressions can be 
