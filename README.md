@@ -33,7 +33,7 @@ but for the impatient, here's a quick demo of how to use *Curta*:
 
 The following datatypes are supported:
 
-* number (as `double`s or `long`s)
+* number (`double` and `long`)
 * boolean (`true` and `false`)
 * null (`null`)
 
