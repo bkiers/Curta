@@ -40,4 +40,20 @@ public enum Operator {
         this.text = text;
         this.type = type;
     }
+
+    public static Operator findType(int type) {
+
+        for(Operator op : Operator.values()) {
+            if(op.type == type) {
+                return op;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s (%s)", this.text, this.name());
+    }
 }

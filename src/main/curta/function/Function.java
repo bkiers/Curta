@@ -22,12 +22,12 @@ public abstract class Function {
 
         if(numberOfParameters < minNumber) {
             throw new RuntimeException("the function " + id + " must have at least " + minNumber +
-                    " parameters, encountered " + numberOfParameters + " parameters");
+                    " parameter(s), encountered " + numberOfParameters + " parameter(s)");
         }
 
         if(numberOfParameters > maxNumber) {
             throw new RuntimeException("the function " + id + " can have at most " + maxNumber +
-                    " parameters, encountered " + numberOfParameters + " parameters");
+                    " parameter(s), encountered " + numberOfParameters + " parameter(s)");
         }
     }
 

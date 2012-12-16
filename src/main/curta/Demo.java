@@ -27,7 +27,7 @@ public class Demo {
             }
         });
 
-        String expression = "isPrime(11)";
+        String expression = "isPrime(null)";
 
         System.out.printf("%s = %s\n", expression, curta.eval(expression));
     }
@@ -58,19 +58,17 @@ public class Demo {
 
         Curta curta = new Curta();
 
-        String expression = "PI = 3; PI";
-
-        System.out.printf("%s = %s\n", expression, curta.eval(expression));
-
-        curta.clear();
-
         curta.setExpression(Operator.Assign, new Expression() {
             @Override
             public Object eval(CurtaNode ast, Map<String, Object> vars, Map<String, Function> functions, Map<Integer, Expression> expressions) {
 
+                // get the text of the 1st child
                 String id = super.getTextFromChild(0, ast);
+
+                // evaluate the 2nd child
                 Object value = super.evalChild(1, ast, vars, functions, expressions);
 
+                // check if it's made from caps only, and is already defined
                 if(id.matches("[A-Z_]+") && vars.containsKey(id)) {
                     System.err.println("cannot reassign: " + id);
                 }
@@ -78,28 +76,20 @@ public class Demo {
                     vars.put(id, value);
                 }
 
-                return null;
+                return value;
             }
         });
 
-        System.out.printf("%s = %s\n", expression, curta.eval(expression));
 
-        expression = "PI = 3; NEW_VAR = 42; NEW_VAR = -1; NEW_VAR";
-
-        System.out.printf("%s = %s\n", expression, curta.eval(expression));
+        System.out.println(curta.eval("PI = 3; VAR = 42; VAR = -1; VAR"));
     }
 
     public static void main(String[] args) throws ParseException {
         //changeExpression();
         //customFunction();
-        //changeAssignExpression();
+        changeAssignExpression();
 
-        Curta curta = new Curta();
 
-        String expression = "~42";
 
-        System.out.printf("%s = %s\n", expression, curta.eval(expression));
-
-        System.out.printf("%s\n", ~42);
     }
 }

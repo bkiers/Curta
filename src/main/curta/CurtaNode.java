@@ -33,7 +33,7 @@ public class CurtaNode extends SimpleNode implements CurtaParserTreeConstants {
                 Expression expression = expressions.get(tokenType);
 
                 if(expression == null) {
-                    throw new RuntimeException("Node not yet implemented: " + jjtNodeName[tokenType]);
+                    throw new RuntimeException("not implemented: " + Operator.findType(tokenType));
                 }
 
                 return expression.eval(ast, vars, functions, expressions);

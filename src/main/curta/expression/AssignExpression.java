@@ -15,6 +15,6 @@ public class AssignExpression extends Expression {
 
         vars.put(id, value);
 
-        return null;
+        return value;
     }
 }

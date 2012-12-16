@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Curta">
 
+    <property name="version"           value="0.3"/>
+    <property name="author"            value="Bart Kiers, bart@big-o.nl"/>
     <property name="tree.grammar.file" value="src/grammar/CurtaParser.jjt"/>
     <property name="grammar.file"      value="src/main/curta/CurtaParser.jj"/>
     <property name="src.dir"           value="src/main/curta"/>
     <property name="build.dir"         value="build/main"/>
+    <property name="release.name" value="${ant.project.name}-${version}"/>
+    <property name="jar.location" value="${release.name}.jar"/>
 
     <path id="classpath">
         <pathelement location="${build.dir}"/>
@@ -37,6 +41,19 @@
             <classpath refid="classpath"/>
         </java>
         <antcall target="compile"/>
+    </target>
+
+    <target name="jar" depends="generate, compile">
+        <tstamp/>
+        <jar destfile="${jar.location}" whenmanifestonly="fail">
+            <fileset dir="${build.dir}">
+                <exclude name="**/*.html"/>
+            </fileset>
+            <manifest>
+                <attribute name="Built-By" value="${author}"/>
+                <attribute name="Built-On" value="${TODAY}"/>
+            </manifest>
+        </jar>
     </target>
 
 </project>
