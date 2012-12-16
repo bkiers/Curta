@@ -133,6 +133,10 @@ the highest precedence.
 13. AND: `&&`
 14. OR: `||`
 
+Note that expressions of equal precedence are *all* evaluated from left to right. This means
+that an expression like 2<sup>3<sup>4</sup></sup>, `2**3**4`, is evaluated as `(2**3)**4`. 
+Use parenthesis to let it evaluate from right to left: `2**(3**4)`
+
 ## Variables
 
 The variables `PI` and `E` from [Java 7's Math class](http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html) 
