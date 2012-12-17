@@ -11,6 +11,6 @@ public class Scalb extends Function {
 
         super.checkNumberOfParams(2, 2, params);
 
-        return Math.scalb(super.getDouble(0, params), super.getDouble(1, params).intValue());
+        return Math.scalb(super.getDouble(0, params), super.getLong(1, params).intValue());
     }
 }

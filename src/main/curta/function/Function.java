@@ -18,7 +18,7 @@ public abstract class Function {
 
     protected final void checkNumberOfParams(int minNumber, int maxNumber, Object... params) {
 
-        int numberOfParameters = params == null ? 0 : params.length;
+        int numberOfParameters = params == null ? -1 : params.length;
 
         if(numberOfParameters < minNumber) {
             throw new RuntimeException("the function " + id + " must have at least " + minNumber +
@@ -40,7 +40,7 @@ public abstract class Function {
                     " is expected to be a number, encountered: " + o);
         }
 
-        return (Double)o;
+        return ((Number)o).doubleValue();
     }
 
     protected final Long getLong(int index, Object... params) {

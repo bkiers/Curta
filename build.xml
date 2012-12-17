@@ -5,13 +5,16 @@
     <property name="author"            value="Bart Kiers, bart@big-o.nl"/>
     <property name="tree.grammar.file" value="src/grammar/CurtaParser.jjt"/>
     <property name="grammar.file"      value="src/main/curta/CurtaParser.jj"/>
-    <property name="src.dir"           value="src/main/curta"/>
+    <property name="src.dir"           value="src/main"/>
+    <property name="test.src.dir"      value="src/test"/>
     <property name="build.dir"         value="build/main"/>
-    <property name="release.name" value="${ant.project.name}-${version}"/>
-    <property name="jar.location" value="${release.name}.jar"/>
+    <property name="test.build.dir"    value="build/test"/>
+    <property name="release.name"      value="${ant.project.name}-${version}"/>
+    <property name="jar.location"      value="${release.name}.jar"/>
 
     <path id="classpath">
         <pathelement location="${build.dir}"/>
+        <pathelement location="${test.build.dir}"/>
         <fileset dir="lib">
             <include name="*.jar"/>
         </fileset>
@@ -29,6 +32,9 @@
         <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
             <classpath refid="classpath"/>
         </javac>
+        <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
     </target>
 
     <target name="generate" depends="init" description="Generates the parser files.">
@@ -41,6 +47,18 @@
             <classpath refid="classpath"/>
         </java>
         <antcall target="compile"/>
+    </target>
+
+    <target name="test" depends="compile">
+        <junit printsummary="yes" fork="yes" haltonfailure="yes">
+            <classpath refid="classpath"/>
+            <formatter type="plain"/>
+            <batchtest fork="yes" todir="${test.build.dir}">
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
     </target>
 
     <target name="jar" depends="generate, compile">
