@@ -70,7 +70,7 @@ SKIP :
 /**
  * Parser rules javacc options
  */
-protected CurtaNode ast() #Root :
+public CurtaNode ast() #Root :
 {}
 {
   (<EOS>)* statements() <EOF> {return jjtThis;}

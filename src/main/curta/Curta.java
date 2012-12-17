@@ -97,9 +97,9 @@ public class Curta {
         DEFAULT_EXPRESSIONS.put(CurtaParserTreeConstants.JJTID, new IdExpression());
     }
 
-    private Map<String, Function> functions;
-    private Map<String, Object> variables;
-    private Map<Integer, Expression> expressions;
+    protected Map<String, Function> functions;
+    protected Map<String, Object> variables;
+    protected Map<Integer, Expression> expressions;
 
     public Curta() {
 
