@@ -266,7 +266,7 @@ would throw the following exception:
 
 One more example. Let's say you want to support `final` variables. Whenever a variable 
 consists of only capital letters (or underscores), you don't want that variable to ever 
-change. This is how you could go about doping this:
+change. You could do this by overrideing the default assignment-expression like this:
 
 ```java
 Curta curta = new Curta();
