@@ -3,6 +3,10 @@
 A small, customizable expression evaluator. Named after the [mechanical calculator
 introduced by Curt Herzstark](http://en.wikipedia.org/wiki/Curta) in 1948. 
 
+The parser is generated using [JavaCC](http://javacc.java.net). The generated parser 
+classes are *not* a part of this repository, only [the grammar](https://github.com/bkiers/Curta/blob/master/src/grammar/CurtaParser.jjt)
+is included. You can generate them using `ant generate`.
+
 It supports all static methods, and variables, from 
 [Java 7's Math class](http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html) 
 and can be easily extended with extra functions. Even certain expressions can be 
@@ -10,11 +14,85 @@ programatically changed. For example, changing the meaning of the `^` as a binar
 XOR operator to act as a power operator (see [Changing expressions](#changing-expressions)
 below).
 
+## Installation
+
+Either checkout this repository and run: `ant jar`, or download the 
+[JAR file](https://github.com/bkiers/Curta/blob/master/Curta-0.3.jar) directly 
+and add it to your project's classpath.
+
+## Quick demo
+
+For a more thorough explanation of this library, scroll to [the next paragraph](#data-types), 
+but for the impatient, here's a quick demo of how to use *Curta*:
+
+```java
+Curta curta = new Curta();
+
+// logical
+assertEquals( curta.eval("false || true"), true );
+assertEquals( curta.eval("(true || false) && true"), true );
+
+// equality
+assertEquals( curta.eval("1 == 1.0"), true );
+assertEquals( curta.eval("1 != 0.99999"), true );
+
+// relational
+assertEquals( curta.eval("-1 < -0.99999"), true );
+assertEquals( curta.eval("1 <= 0.99999"), false );
+
+// binary
+assertEquals( curta.eval("~8"), -9L );
+assertEquals( curta.eval("4 << 1"), 8L );
+
+// basic arithmetic
+assertEquals( curta.eval("1 + 2 * 3"), 7.0 );
+assertEquals( curta.eval("(1 + 2) * 3"), 9.0 );
+
+// variables
+curta.addVariable("mu", 42);
+assertEquals( curta.eval("mu + mu"), 84.0 );
+assertEquals( curta.eval("return mu + mu"), 84.0 );
+assertEquals( curta.eval("foo = 2; mu + foo"), 44.0 );
+
+// built-in functions
+assertEquals( curta.eval("abs(-999)"), 999.0 );
+assertEquals( curta.eval("cos(PI)"), -1.0 );
+assertEquals( curta.eval("hypot(3, 4)"), 5.0 );
+
+// custom function
+curta.addFunction(new Function("thrice") {
+    @Override
+    public Object eval(Object... params) {
+        return super.getDouble(0, params) * 3;
+    }
+});
+assertEquals( curta.eval("thrice(9)"), 27.0 );
+
+// change existing expressions
+curta.setExpression(Operator.Add, new Expression() {
+    @Override
+    public Object eval(CurtaNode ast,
+                       Map<String, Object> vars,
+                       Map<String, Function> functions,
+                       Map<Integer, Expression> expressions) {
+
+        // from now on N + M will become N * M
+        return super.evalChildAsDouble(0, ast, vars, functions, expressions) *
+                super.evalChildAsDouble(1, ast, vars, functions, expressions);
+    }
+});
+assertEquals( curta.eval("3 + 5"), 15.0 );
+
+// reset variables, functions and expressions
+curta.clear();
+assertEquals( curta.eval("3 + 5"), 8.0 );
+```
+
 ## Data types
 
 The following datatypes are supported:
 
-* number (as `double`s or `long`s)
+* number (`double` and `long`)
 * boolean (`true` and `false`)
 * null (`null`)
 
@@ -54,6 +132,10 @@ the highest precedence.
 12. bitwise OR: `|`
 13. AND: `&&`
 14. OR: `||`
+
+Note that expressions of equal precedence are *all* evaluated from left to right. This means
+that an expression like 2<sup>3<sup>4</sup></sup>, `2**3**4`, is evaluated as `(2**3)**4`. 
+Use parenthesis to let it evaluate from right to left: `2**(3**4)`
 
 ## Variables
 
@@ -184,7 +266,7 @@ would throw the following exception:
 
 One more example. Let's say you want to support `final` variables. Whenever a variable 
 consists of only capital letters (or underscores), you don't want that variable to ever 
-change. This is how you could go about doping this:
+change. You could do this by overrideing the default assignment-expression like this:
 
 ```java
 Curta curta = new Curta();
@@ -222,6 +304,9 @@ cannot reassign: VAR
 ```
 
 Changing `VAR` to `var` will cause `-1` to be returned.
+
+See the [`Operator` enum](https://github.com/bkiers/Curta/blob/master/src/main/curta/Operator.java) 
+to find out which operators can be reassigned.
 
 Calling `clear()` on the `Curta` instance will reset everything: the *bitwise-not* is supported 
 again, and you can reassign capitalized variables.
