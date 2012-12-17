@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class OrExpressionTest extends BaseExpressionTest {
+public class OrExpressionTest extends ExpressionTestBase {
 
     @Test
     public void testEval() throws ParseException {

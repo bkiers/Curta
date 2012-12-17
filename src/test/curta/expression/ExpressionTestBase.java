@@ -6,13 +6,13 @@ import curta.function.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class BaseExpressionTest {
+public abstract class ExpressionTestBase {
 
     protected Map<String, Function> functions;
     protected Map<String, Object> variables;
     protected Map<Integer, Expression> expressions;
     
-    public BaseExpressionTest() {
+    public ExpressionTestBase() {
         
         functions = new LinkedHashMap<String, Function>();
         variables = new LinkedHashMap<String, Object>();
