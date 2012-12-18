@@ -68,6 +68,6 @@ public abstract class Expression {
     }
 
     protected String getTextFromChild(int index, CurtaNode ast) {
-        return (String)((CurtaNode)ast.jjtGetChild(0)).jjtGetValue();
+        return (String)((CurtaNode)ast.jjtGetChild(index)).jjtGetValue();
     }
 }

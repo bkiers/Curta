@@ -6,8 +6,11 @@ import java.util.Map;
 
 public class CurtaNode extends SimpleNode implements CurtaParserTreeConstants {
 
+    public final int treeType;
+
     public CurtaNode(int type) {
         super(type);
+        this.treeType = type;
     }
 
     public Object eval(Map<String, Object> vars, Map<String, Function> functions, Map<Integer, Expression> expressions) {
@@ -33,7 +36,7 @@ public class CurtaNode extends SimpleNode implements CurtaParserTreeConstants {
                 Expression expression = expressions.get(tokenType);
 
                 if(expression == null) {
-                    throw new RuntimeException("not implemented: " + Operator.findType(tokenType));
+                    throw new RuntimeException("not implemented: " + Operator.findByType(tokenType));
                 }
 
                 return expression.eval(ast, vars, functions, expressions);

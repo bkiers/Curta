@@ -50,7 +50,8 @@ TOKEN :
   |  < False      : "false" >
   |  < Null       : "null" >
   |  < Return     : "return" >
-  |  < Number     : (<Digit>)+ ("." (<Digit>)+)? | "." (<Digit>)+ >
+  |  < NumDouble  : (<Digit>)+ "." (<Digit>)+ | "." (<Digit>)+ >
+  |  < NumLong    : (<Digit>)+ >
   |  < Identifier : ("_" | <Letter>) ("_" | <AlphaNum>)* >
 }
 
@@ -185,23 +186,23 @@ private void mul() :
 private void unary() :
 {}
 {
-     <Sub> bitwiseUnary() #UnarySub
-  |  <Add> bitwiseUnary() #UnaryAdd
-  |  <Not> bitwiseUnary() #Not
+     <Sub> unary() #UnarySub
+  |  <Add> unary() #UnaryAdd
+  |  <Not> unary() #Not
   |  bitwiseUnary()
 }
 
 private void bitwiseUnary() :
 {}
 {
-     <BNot> pow()       #BNot
+     <BNot> unary() #BNot
   |  pow()
 }
 
 private void pow() :
 {}
 {
-  atom() ( <Pow> atom() #Pow(2)
+  atom() ( LOOKAHEAD(2) <Pow> unary() #Pow(2)
          )*
 }
 
@@ -228,7 +229,8 @@ private void num() #Num :
   Token t;
 }
 {
-  t=<Number> {jjtThis.value = Double.valueOf(t.image);}
+     t=<NumDouble> {jjtThis.value = Double.valueOf(t.image);}
+  |  t=<NumLong>   {jjtThis.value = Long.valueOf(t.image);}
 }
 
 private void _null() #Null :

@@ -1,24 +1,26 @@
 package curta.expression;
 
-import curta.*;
+import curta.CurtaNode;
+import curta.Operator;
+import curta.ParseException;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-public class AddExpressionTest extends ExpressionTestBase {
+public class ModulusExpressionTest extends ExpressionTestBase {
 
     @Test
     public void testEval() throws ParseException {
 
-        Operator operator = Operator.Add;
+        Operator operator = Operator.Modulus;
         Expression expression = super.expressions.get(operator.type);
 
         Object[][] tests = {
-                {"2 + 6", 8.0},
-                {"-2 + 6", 4.0},
-                {"2.2 + 6.01", 8.21}
+                {"288 % 6", 288 % 6},
+                {"-20 % 6", -20 % 6},
+                {"2.2 % 1.1", 2.2 % 1.1}
         };
 
         for(Object[] test : tests) {
@@ -27,7 +29,14 @@ public class AddExpressionTest extends ExpressionTestBase {
             assertThat(ast.treeType, is(operator.type));
             Object value = expression.eval(ast, super.variables, super.functions, super.expressions);
 
-            assertEquals(value, test[1]);
+            Number expected = (Number)test[1];
+
+            if(expected.getClass() == Integer.class) {
+                assertEquals(value, expected.longValue());
+            }
+            else {
+                assertEquals(value, expected);
+            }
         }
     }
 }

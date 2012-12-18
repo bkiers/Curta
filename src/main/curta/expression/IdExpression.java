@@ -12,12 +12,10 @@ public class IdExpression extends Expression {
 
         String id = (String)ast.jjtGetValue();
 
-        Object value = vars.get(id);
-
-        if(value == null) {
+        if(!vars.containsKey(id)) {
             throw new RuntimeException("Unknown variable: " + id);
         }
 
-        return value;
+        return vars.get(id);
     }
 }

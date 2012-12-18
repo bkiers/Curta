@@ -16,8 +16,12 @@ public class EqualsExpression extends Expression {
         if(lhs == rhs) {
             return true;
         }
-        else if(lhs == null) {
+        else if(lhs == null || rhs == null) {
             return false;
+        }
+        else if((lhs instanceof Number) && (rhs instanceof Number)) {
+            // otherwise 1 != 1.0
+            return ((Number)lhs).doubleValue() == ((Number)rhs).doubleValue();
         }
 
         return lhs.equals(rhs);

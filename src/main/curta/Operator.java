@@ -41,7 +41,30 @@ public enum Operator {
         this.type = type;
     }
 
-    public static Operator findType(int type) {
+    public static Operator findByText(String text) {
+
+        return findByText(text, true);
+    }
+
+    public static Operator findByText(String text, boolean binaryExpression) {
+
+        if("-".equals(text)) {
+            return binaryExpression ? Operator.Subtract : Operator.UnaryMinus;
+        }
+        else if("+".equals(text)) {
+            return binaryExpression ? Operator.Add : Operator.UnaryPlus;
+        }
+
+        for(Operator op : Operator.values()) {
+            if(op.text.equals(text)) {
+                return op;
+            }
+        }
+
+        throw new RuntimeException("did not find an operator: " + text);
+    }
+
+    public static Operator findByType(int type) {
 
         for(Operator op : Operator.values()) {
             if(op.type == type) {
@@ -49,7 +72,7 @@ public enum Operator {
             }
         }
 
-        return null;
+        throw new RuntimeException("did not fins an operator with type: " + type);
     }
 
     @Override
