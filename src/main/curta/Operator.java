@@ -72,7 +72,7 @@ public enum Operator {
             }
         }
 
-        throw new RuntimeException("did not fins an operator with type: " + type);
+        throw new RuntimeException("did not find an operator with type: " + type);
     }
 
     @Override
