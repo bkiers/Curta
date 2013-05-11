@@ -1,6 +1,5 @@
 options {
   STATIC=false;
-  OUTPUT_DIRECTORY="src/main/curta";
   NODE_DEFAULT_VOID=true;
   NODE_CLASS="CurtaNode";
 }

@@ -2,17 +2,12 @@ package curta;
 
 import curta.expression.Expression;
 import curta.function.Function;
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
 import org.junit.Test;
-
-import java.io.File;
 import java.util.Map;
 
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.isArray;
 
 public class CurtaTest {
 
@@ -22,8 +17,8 @@ public class CurtaTest {
         Curta curta = new Curta();
 
         // logical
-        assertEquals( curta.eval("false || true"), true );
-        assertEquals( curta.eval("(true || false) && true"), true );
+        assertThat( curta.eval("false || true"), is((Object)true) );
+		assertThat( curta.eval("(true || false) && true"), is((Object)true) );
 
         // equality
         assertEquals( curta.eval("1 == 1.0"), true );

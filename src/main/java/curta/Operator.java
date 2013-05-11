@@ -1,10 +1,5 @@
 package curta;
 
-import curta.CurtaParserTreeConstants;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public enum Operator {
 
     Assign("=", CurtaParserTreeConstants.JJTASSIGN),
