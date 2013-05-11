@@ -43,9 +43,9 @@
         <version>2.6</version>
         <executions>
           <execution>
-            <id>javacc</id>
+            <id>jjtree-javacc</id>
             <goals>
-              <goal>javacc</goal>
+              <goal>jjtree-javacc</goal>
             </goals>
           </execution>
         </executions>
