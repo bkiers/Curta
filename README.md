@@ -1,4 +1,4 @@
-## Curta
+## Curta &nbsp; [![Build Status](https://travis-ci.org/bkiers/Curta.png)](https://travis-ci.org/bkiers/Curta)
 
 A small, customizable expression evaluator. Named after the [mechanical calculator
 introduced by Curt Herzstark](http://en.wikipedia.org/wiki/Curta) in 1948. 
