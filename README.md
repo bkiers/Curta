@@ -17,7 +17,7 @@ below).
 ## Installation
 
 Either checkout this repository and run: `mvn install`, or download a pre build
-[JAR file](https://github.com/bkiers/Curta/builds) directly and add it to your
+[JAR file](https://github.com/bkiers/Curta/tree/master/builds) directly and add it to your
 project's classpath.
 
 ## Quick demo
