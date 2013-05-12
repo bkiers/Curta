@@ -16,9 +16,9 @@ below).
 
 ## Installation
 
-Either checkout this repository and run: `ant jar`, or download the 
-[JAR file](https://github.com/bkiers/Curta/blob/master/Curta-0.3.jar) directly 
-and add it to your project's classpath.
+Either checkout this repository and run: `mvn install`, or download a pre build
+[JAR file](https://github.com/bkiers/Curta/builds) directly and add it to your
+project's classpath.
 
 ## Quick demo
 
@@ -90,7 +90,7 @@ assertEquals( curta.eval("3 + 5"), 8.0 );
 
 ## Data types
 
-The following datatypes are supported:
+The following data types are supported:
 
 * number (`double` and `long`)
 * boolean (`true` and `false`)
@@ -133,14 +133,14 @@ the highest precedence.
 13. AND: `&&`
 14. OR: `||`
 
-Note that expressions of equal precedence are *all* evaluated from left to right. This means
+Note that binary expressions are *all* evaluated from left to right. This means
 that an expression like 2<sup>3<sup>4</sup></sup>, `2**3**4`, is evaluated as `(2**3)**4`. 
 Use parenthesis to let it evaluate from right to left: `2**(3**4)`
 
 ## Variables
 
 The variables `PI` and `E` from [Java 7's Math class](http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html) 
-are built-in, and you can assign variables yourself too, either programatically, or in the input that
+are built-in, and you can assign variables yourself too, either programmatically, or in the input that
 is to be evaluated. Some examples:
 
 ```java
@@ -203,10 +203,10 @@ would print:
 
 #### Custom functions
 
-You can also define your own functions programatically. For example, you would like
+You can also define your own functions programmatically. For example, you would like
 to create a function that will return `true` (or `false`) if a number is prime or not.
 
-You can use `Curta`s `addFcuntion(Function)` method for this:
+You can use `Curta`s `addFunction(Function)` method for this:
 
 ```java
 Curta curta = new Curta();
@@ -234,7 +234,7 @@ System.out.printf("%s = %s\n", expression, curta.eval(expression));
 
 which will print: `isPrime(2147483647) = true`
 
-As you can see, the abstract class [`Function`](https://github.com/bkiers/Curta/blob/master/src/main/curta/function/Function.java), 
+As you can see, the abstract class [`Function`](https://github.com/bkiers/Curta/blob/master/src/main/java/curta/function/Function.java),
 which your custom function must be extended from, has a couple of utility methods 
 to check the number of parameters, and convert these parameters to more usable 
 classes (a `long`, in this case). This means that evaluating either `"isPrime(true)"`
@@ -242,7 +242,7 @@ or `"isPrime(11, 17)"` would result in an exception to be thrown.
 
 ## Changing expressions
 
-Some expressions can be changed (or removed) from the parser programatically. Lets's say
+Some expressions can be changed (or removed) from the parser programmatically. Let's say
 you don't want to have support for the *bitwise-not* operator. You can then simply set the 
 operator of an expression to `null`.
 
@@ -266,7 +266,7 @@ would throw the following exception:
 
 One more example. Let's say you want to support `final` variables. Whenever a variable 
 consists of only capital letters (or underscores), you don't want that variable to ever 
-change. You could do this by overrideing the default assignment-expression like this:
+change. You could do this by overriding the default assignment-expression like this:
 
 ```java
 Curta curta = new Curta();
