@@ -27,50 +27,50 @@ For a more thorough explanation of this library, scroll to [the next paragraph](
 but for the impatient, here's a quick demo of how to use *Curta*:
 
 ```java
-Curta curta = new Curta();
+Curta nl.bigo.curta = new Curta();
 
 // logical
-assertEquals( curta.eval("false || true"), true );
-assertEquals( curta.eval("(true || false) && true"), true );
+assertEquals( nl.bigo.curta.eval("false || true"), true );
+assertEquals( nl.bigo.curta.eval("(true || false) && true"), true );
 
 // equality
-assertEquals( curta.eval("1 == 1.0"), true );
-assertEquals( curta.eval("1 != 0.99999"), true );
+assertEquals( nl.bigo.curta.eval("1 == 1.0"), true );
+assertEquals( nl.bigo.curta.eval("1 != 0.99999"), true );
 
 // relational
-assertEquals( curta.eval("-1 < -0.99999"), true );
-assertEquals( curta.eval("1 <= 0.99999"), false );
+assertEquals( nl.bigo.curta.eval("-1 < -0.99999"), true );
+assertEquals( nl.bigo.curta.eval("1 <= 0.99999"), false );
 
 // binary
-assertEquals( curta.eval("~8"), -9L );
-assertEquals( curta.eval("4 << 1"), 8L );
+assertEquals( nl.bigo.curta.eval("~8"), -9L );
+assertEquals( nl.bigo.curta.eval("4 << 1"), 8L );
 
 // basic arithmetic
-assertEquals( curta.eval("1 + 2 * 3"), 7.0 );
-assertEquals( curta.eval("(1 + 2) * 3"), 9.0 );
+assertEquals( nl.bigo.curta.eval("1 + 2 * 3"), 7.0 );
+assertEquals( nl.bigo.curta.eval("(1 + 2) * 3"), 9.0 );
 
 // variables
-curta.addVariable("mu", 42);
-assertEquals( curta.eval("mu + mu"), 84.0 );
-assertEquals( curta.eval("return mu + mu"), 84.0 );
-assertEquals( curta.eval("foo = 2; mu + foo"), 44.0 );
+nl.bigo.curta.addVariable("mu", 42);
+assertEquals( nl.bigo.curta.eval("mu + mu"), 84.0 );
+assertEquals( nl.bigo.curta.eval("return mu + mu"), 84.0 );
+assertEquals( nl.bigo.curta.eval("foo = 2; mu + foo"), 44.0 );
 
 // built-in functions
-assertEquals( curta.eval("abs(-999)"), 999.0 );
-assertEquals( curta.eval("cos(PI)"), -1.0 );
-assertEquals( curta.eval("hypot(3, 4)"), 5.0 );
+assertEquals( nl.bigo.curta.eval("abs(-999)"), 999.0 );
+assertEquals( nl.bigo.curta.eval("cos(PI)"), -1.0 );
+assertEquals( nl.bigo.curta.eval("hypot(3, 4)"), 5.0 );
 
 // custom function
-curta.addFunction(new Function("thrice") {
+nl.bigo.curta.addFunction(new Function("thrice") {
     @Override
     public Object eval(Object... params) {
         return super.getDouble(0, params) * 3;
     }
 });
-assertEquals( curta.eval("thrice(9)"), 27.0 );
+assertEquals( nl.bigo.curta.eval("thrice(9)"), 27.0 );
 
 // change existing expressions
-curta.setExpression(Operator.Add, new Expression() {
+nl.bigo.curta.setExpression(Operator.Add, new Expression() {
     @Override
     public Object eval(CurtaNode ast,
                        Map<String, Object> vars,
@@ -82,11 +82,11 @@ curta.setExpression(Operator.Add, new Expression() {
                 super.evalChildAsDouble(1, ast, vars, functions, expressions);
     }
 });
-assertEquals( curta.eval("3 + 5"), 15.0 );
+assertEquals( nl.bigo.curta.eval("3 + 5"), 15.0 );
 
 // reset variables, functions and expressions
-curta.clear();
-assertEquals( curta.eval("3 + 5"), 8.0 );
+nl.bigo.curta.clear();
+assertEquals( nl.bigo.curta.eval("3 + 5"), 8.0 );
 ```
 
 ## Data types
@@ -145,16 +145,16 @@ are built-in, and you can assign variables yourself too, either programmatically
 is to be evaluated. Some examples:
 
 ```java
-Curta curta = new Curta();
+Curta nl.bigo.curta = new Curta();
 
-System.out.println(curta.eval("PI"));
-System.out.println(curta.eval("E"));
+System.out.println(nl.bigo.curta.eval("PI"));
+System.out.println(nl.bigo.curta.eval("E"));
 
-curta.addVariable("answer", 21);
+nl.bigo.curta.addVariable("answer", 21);
 
-System.out.println(curta.eval("answer * 2"));
+System.out.println(nl.bigo.curta.eval("answer * 2"));
 
-System.out.println(curta.eval("x = 5; answer * x"));
+System.out.println(nl.bigo.curta.eval("x = 5; answer * x"));
 ```
 
 which will print:
@@ -181,13 +181,13 @@ are supported. However, there's no need to put `Math.` in front of it.
 Some examples:
 
 ```java
-Curta curta = new Curta();
+Curta nl.bigo.curta = new Curta();
 
-System.out.println(curta.eval("sin(1)"));
-System.out.println(curta.eval("random()"));
-System.out.println(curta.eval("hypot(3, 4)"));
-System.out.println(curta.eval("abs(-1)"));
-System.out.println(curta.eval("min(42, -11)"));
+System.out.println(nl.bigo.curta.eval("sin(1)"));
+System.out.println(nl.bigo.curta.eval("random()"));
+System.out.println(nl.bigo.curta.eval("hypot(3, 4)"));
+System.out.println(nl.bigo.curta.eval("abs(-1)"));
+System.out.println(nl.bigo.curta.eval("min(42, -11)"));
 ```
 
 would print:
@@ -210,9 +210,9 @@ to create a function that will return `true` (or `false`) if a number is prime o
 You can use `Curta`s `addFunction(Function)` method for this:
 
 ```java
-Curta curta = new Curta();
+Curta nl.bigo.curta = new Curta();
 
-curta.addFunction(new Function("isPrime") {
+nl.bigo.curta.addFunction(new Function("isPrime") {
 
     @Override
     public Object eval(Object... params) {
@@ -230,12 +230,12 @@ curta.addFunction(new Function("isPrime") {
 
 String expression = "isPrime(2147483647)";
 
-System.out.printf("%s = %s\n", expression, curta.eval(expression)); 
+System.out.printf("%s = %s\n", expression, nl.bigo.curta.eval(expression));
 ```
 
 which will print: `isPrime(2147483647) = true`
 
-As you can see, the abstract class [`Function`](https://github.com/bkiers/Curta/blob/master/src/main/java/curta/function/Function.java),
+As you can see, the abstract class [`Function`](https://github.com/bkiers/Curta/blob/master/src/main/java/nl.bigo.curta/function/Function.java),
 which your custom function must be extended from, has a couple of utility methods 
 to check the number of parameters, and convert these parameters to more usable 
 classes (a `long`, in this case). This means that evaluating either `"isPrime(true)"`
@@ -250,16 +250,16 @@ operator of an expression to `null`.
 For example, the following code:
 
 ```java
-Curta curta = new Curta();
-System.out.println(curta.eval("~42"));
+Curta nl.bigo.curta = new Curta();
+System.out.println(nl.bigo.curta.eval("~42"));
 ```
 
 would print `-43`, but:
 
 ```java
-Curta curta = new Curta();
-curta.setExpression(Operator.BitNot, null);
-System.out.println(curta.eval("~42"));
+Curta nl.bigo.curta = new Curta();
+nl.bigo.curta.setExpression(Operator.BitNot, null);
+System.out.println(nl.bigo.curta.eval("~42"));
 ```
 would throw the following exception: 
 
@@ -270,9 +270,9 @@ consists of only capital letters (or underscores), you don't want that variable 
 change. You could do this by overriding the default assignment-expression like this:
 
 ```java
-Curta curta = new Curta();
+Curta nl.bigo.curta = new Curta();
 
-curta.setExpression(Operator.Assign, new Expression() {
+nl.bigo.curta.setExpression(Operator.Assign, new Expression() {
     @Override
     public Object eval(CurtaNode ast, Map<String, Object> vars, Map<String, Function> functions, Map<Integer, Expression> expressions) {
 
@@ -294,7 +294,7 @@ curta.setExpression(Operator.Assign, new Expression() {
     }
 });
 
-System.out.println(curta.eval("PI = 3; VAR = 42; VAR = -1; VAR"));
+System.out.println(nl.bigo.curta.eval("PI = 3; VAR = 42; VAR = -1; VAR"));
 ```
 
 The code above will return `42` and causes the following to be printed to the `system.err`:
@@ -306,7 +306,7 @@ cannot reassign: VAR
 
 Changing `VAR` to `var` will cause `-1` to be returned.
 
-See the [`Operator` enum](https://github.com/bkiers/Curta/blob/master/src/main/java/curta/Operator.java)
+See the [`Operator` enum](https://github.com/bkiers/Curta/blob/master/src/main/java/nl.bigo.curta/Operator.java)
 to find out which operators can be reassigned.
 
 Calling `clear()` on the `Curta` instance will reset everything: the *bitwise-not* is supported 
