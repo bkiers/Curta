@@ -6,7 +6,7 @@ options {
 
 PARSER_BEGIN(CurtaParser)
 
-package curta;
+package nl.bigo.curta;
 
 public class CurtaParser {
 }
