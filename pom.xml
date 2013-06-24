@@ -8,7 +8,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>curta</name>
+    <name>Curta</name>
     <description>A small, customizable expression evaluator written in Java.</description>
     <url>https://github.com/bkiers/Curta</url>
     <inceptionYear>2012</inceptionYear>
