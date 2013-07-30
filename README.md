@@ -1,7 +1,7 @@
 ## Curta &nbsp; [![Build Status](https://travis-ci.org/bkiers/Curta.png)](https://travis-ci.org/bkiers/Curta)
 
 A small, customizable expression evaluator. Named after the [mechanical calculator
-introduced by Curt Herzstark]curta(http://en.wikipedia.org/wiki/Curta) in 1948. 
+introduced by Curt Herzstark](http://en.wikipedia.org/wiki/Curta) in 1948. 
 
 The parser is generated using [JavaCC](http://javacc.java.net). The gcurtaenerated parser 
 classes are *not* a part of this repository, only [the grammar](https://github.com/bkiers/Curta/blob/master/src/main/jjtree/CurtaParser.jjt)
