@@ -16,9 +16,8 @@ below).
 
 ## Installation
 
-Either checkout this repository and run: `mvn install`, or download a pre build
-[JAR file](https://github.com/bkiers/Curta/tree/master/builds) directly and add it to your
-project's classpath.
+Clone this repository and run: `mvn install` which will create a JAR of Curta
+in your local Maven repository, as well as in the project's `target/` folder.
 
 ## Quick demo
 
