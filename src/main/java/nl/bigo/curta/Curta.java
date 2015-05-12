@@ -106,12 +106,12 @@ public class Curta {
         clear();
     }
 
-    protected void addFunction(Function function) {
+    public void addFunction(Function function) {
 
         functions.put(function.id, function);
     }
 
-    protected void addVariable(String id, Object value) {
+    public void addVariable(String id, Object value) {
 
         variables.put(id, value);
     }
