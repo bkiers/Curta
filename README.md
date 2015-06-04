@@ -16,7 +16,48 @@ below).
 
 ## Installation
 
-Clone this repository and run: `mvn install` which will create a JAR of Curta
+### Gradle
+
+Add the repository:
+
+```groovy
+repositories {
+  maven {
+    url "https://jitpack.io"
+  }
+}
+```
+
+and then add the dependency:
+
+```groovy
+dependencies {
+  compile 'com.github.bkiers:Curta:1.0.0'
+}
+```
+
+### Maven
+
+Add the following to your POM's `<repositories>` tag:
+
+```xml
+<repository>
+  <id>jitpack.io</id>
+  <url>https://jitpack.io</url>
+</repository>
+```
+
+then add the following dependency:
+
+```xml
+<dependency>
+  <groupId>com.github.bkiers</groupId>
+  <artifactId>Curta</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+Or clone this repository and run: `mvn install` which will create a JAR of Curta
 in your local Maven repository, as well as in the project's `target/` folder.
 
 ## Quick demo
