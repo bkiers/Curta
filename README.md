@@ -1,4 +1,4 @@
-## Curta &nbsp; [![Build Status](https://travis-ci.org/bkiers/Curta.png)](https://travis-ci.org/bkiers/Curta)
+## Curta &nbsp; [![Build Status](https://travis-ci.org/bkiers/Curta.png)](https://travis-ci.org/bkiers/Curta) [![Release](https://img.shields.io/github/release/bkiers/Curta.svg?label=maven version)](https://jitpack.io/#bkiers/Curta)
 
 A small, customizable expression evaluator. Named after the [mechanical calculator
 introduced by Curt Herzstark](http://en.wikipedia.org/wiki/Curta) in 1948. 
