@@ -4,65 +4,17 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
-
-    <groupId>nl.bigo</groupId>
+    <groupId>nl.big-o</groupId>
     <artifactId>curta</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
-
     <name>Curta</name>
-    <description>A small, customizable expression evaluator written in Java.</description>
-    <url>https://github.com/bkiers/Curta</url>
-    <inceptionYear>2012</inceptionYear>
-
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.11</junit.version>
         <javacc.version>5.0</javacc.version>
     </properties>
-
-    <scm>
-        <url>https://github.com/bkiers/Curta</url>
-        <connection>scm:git:git://github.com/bkiers/Curta.git</connection>
-        <developerConnection>scm:git:git@github.com:bkiers/Curta.git</developerConnection>
-        <tag>1.0.0</tag>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>Bart Kiers</name>
-            <email>bart@big-o.nl</email>
-            <id>bart</id>
-            <url>http://big-o.nl</url>
-            <timezone>+1</timezone>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
-
-    <licenses>
-        <license>
-            <name>The MIT License (MIT)</name>
-            <url>http://opensource.org/licenses/MIT</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <organization>
-        <name>Bart Kiers</name>
-        <url>http://big-o.nl</url>
-    </organization>
-
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/bkiers/Curta/issues</url>
-    </issueManagement>
 
     <dependencies>
 
@@ -112,36 +64,5 @@
         </plugins>
 
     </build>
-
-    <!-- mvn clean deploy -Dgpg.passphrase=yourpassphrase -->
-    <profiles>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.1</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
